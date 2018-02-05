@@ -71,12 +71,11 @@ app.get('/', function (req, res) {
         res.render('index.html', { pageCountMessage : null, dbInfo: dbDetails });
       } else {
         col.count(function(err, count){
-        if (err) {
-          console.log('Error running count. Message:\n'+err);
+          if (err) {
+            console.log('Error running count. Message:\n'+err);
+          }
+          res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
         }
-        res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
-    });
-
       }
     });
   } else {
