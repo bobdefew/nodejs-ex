@@ -69,18 +69,18 @@ app.get('/', function (req, res) {
     col.insert({ip: req.ip, date: Date.now()}, function(err, result){
       if (err) {
         console.log('Error inserting hit. Message:\n'+err);
-        res.render('index.html', { pageCountMessage : null, dbInfo: dbDetails, hostname: os.hostname });
+        res.render('index.html', { pageCountMessage : null, dbInfo: dbDetails, hostname: os.hostname() });
       } else {
         col.count(function(err, count){
           if (err) {
             console.log('Error running count. Message:\n'+err);
           }
-          res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails, hostname: os.hostname });
+          res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails, hostname: os.hostname() });
         })
       }
     });
   } else {
-    res.render('index.html', { pageCountMessage : null, hostname: os.hostname});
+    res.render('index.html', { pageCountMessage : null, hostname: os.hostname()});
   }
 });
 
